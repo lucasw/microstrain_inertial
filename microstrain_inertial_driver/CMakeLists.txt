@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(microstrain_inertial_driver)
 
+option(BUILD_TESTING "Whether or not to build tests" OFF)
+
+if(BUILD_TESTING)
+  set_property(TARGET roslint PROPERTY EXCLUDE_FROM_ALL OFF)
+endif()
+
 # Locate the common code and messages
 set(COMMON_NAME "microstrain_inertial_driver_common")
 set(COMMON_DIR "${${PROJECT_NAME}_SOURCE_DIR}/${COMMON_NAME}")
