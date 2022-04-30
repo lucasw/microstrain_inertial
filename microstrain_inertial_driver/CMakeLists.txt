@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(microstrain_inertial_driver)
 
-# option(BUILD_TESTING "Whether or not to build tests" OFF)
+option(BUILD_TESTING "Whether or not to build tests" OFF)
 
 # Locate the common code and messages
 set(COMMON_NAME "microstrain_inertial_driver_common")
@@ -186,7 +186,8 @@ install(FILES ${BOOST_LIBS} ${MSCL_DIR}/libmscl.so
 set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens,-build/c++11,-whitespace/braces")
 roslint_cpp(microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_ros_funcs.h)
 
-roslint_add_test()
-# if(BUILD_TESTING)
-#   set_property(TARGET roslint PROPERTY EXCLUDE_FROM_ALL OFF)
-# endif()
+# TODO(lucasw) does this provide the same function as the set_property?
+# roslint_add_test()
+if(BUILD_TESTING)
+  set_property(TARGET roslint PROPERTY EXCLUDE_FROM_ALL OFF)
+endif()
