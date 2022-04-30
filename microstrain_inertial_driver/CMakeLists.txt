@@ -3,10 +3,6 @@ project(microstrain_inertial_driver)
 
 option(BUILD_TESTING "Whether or not to build tests" OFF)
 
-if(BUILD_TESTING)
-  set_property(TARGET roslint PROPERTY EXCLUDE_FROM_ALL OFF)
-endif()
-
 # Locate the common code and messages
 set(COMMON_NAME "microstrain_inertial_driver_common")
 set(COMMON_DIR "${${PROJECT_NAME}_SOURCE_DIR}/${COMMON_NAME}")
@@ -189,3 +185,7 @@ install(FILES ${BOOST_LIBS} ${MSCL_DIR}/libmscl.so
 ## Run roslint on only the node files for now
 set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens")
 roslint_cpp(${LIB_SRC_FILES} ${LIB_INC_FILES} ${NODE_SRC_FILES} ${NODE_INC_FILES})
+
+if(BUILD_TESTING)
+  set_property(TARGET roslint PROPERTY EXCLUDE_FROM_ALL OFF)
+endif()
