@@ -183,8 +183,6 @@ install(FILES ${BOOST_LIBS} ${MSCL_DIR}/libmscl.so
 # build/c++11 and whitespace/braces only trip on the buildfarm which is melodic, maybe it's not needed in noetic?
 # set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens,-build/c++11,-whitespace/braces")
 set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens")
-roslint_cpp(microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_ros_funcs.h)
-roslint_cpp(microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_ros_funcs.h)
+roslint_cpp()
 
-# TODO(lucasw) does this provide the same function as the set_property?
 roslint_add_test()
