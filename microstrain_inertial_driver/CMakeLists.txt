@@ -32,7 +32,7 @@ download_mscl(VERSION "64.2.2")
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roslint
+  # roslint
   message_generation
   geometry_msgs
   nav_msgs
@@ -45,7 +45,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   tf2_geometry_msgs
-  diagnostic_updater
+  # diagnostic_updater
   microstrain_inertial_msgs
 )
 
@@ -85,7 +85,7 @@ catkin_package(
 include_directories(${catkin_INCLUDE_DIRS} include ${COMMON_DIR}/include)
 
 # Set some general CMake flags
-add_definitions(-std=c++11)
+add_definitions(-std=c++17)
 set(CMAKE_C_FLAGS "-Wno-implicit-function-declaration -Wno-incompatible-pointer-types -Wno-format -fno-builtin-memcpy")
 
 set(LIB_SRC_FILES
@@ -114,20 +114,20 @@ add_dependencies(${PROJECT_NAME}
   ${catkin_EXPORTED_TARGETS}
 )
 
-add_library(microstrain_diagnostic_updater src/microstrain_diagnostic_updater.cpp)
-add_dependencies(microstrain_diagnostic_updater
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
+# add_library(microstrain_diagnostic_updater src/microstrain_diagnostic_updater.cpp)
+# add_dependencies(microstrain_diagnostic_updater
+#   ${${PROJECT_NAME}_EXPORTED_TARGETS}
+#   ${catkin_EXPORTED_TARGETS}
+# )
 
 # Executables
 set(NODE_SRC_FILES
   src/microstrain_inertial_driver_node.cpp
-  src/microstrain_diagnostic_updater.cpp
+  # src/microstrain_diagnostic_updater.cpp
 )
 set(NODE_INC_FILES
   include/${PROJECT_NAME}/microstrain_inertial_driver.h
-  include/${PROJECT_NAME}/microstrain_diagnostic_updater.h
+  # include/${PROJECT_NAME}/microstrain_diagnostic_updater.h
 )
 add_executable(${PROJECT_NAME}_node ${NODE_SRC_FILES} ${NODE_INC_FILES})
 
@@ -182,6 +182,6 @@ install(FILES ${BOOST_LIBS} ${MSCL_DIR}/libmscl.so
 
 # build/c++11 and whitespace/braces only trip on the buildfarm which is melodic, maybe it's not needed in noetic?
 set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens,-build/c++11,-whitespace/braces")
-roslint_cpp()
+# roslint_cpp()
 
-roslint_add_test()
+# roslint_add_test()

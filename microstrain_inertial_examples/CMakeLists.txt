@@ -4,7 +4,7 @@ project(microstrain_inertial_examples)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  roslint
+  # roslint
   sensor_msgs
   microstrain_inertial_msgs
 )
@@ -45,4 +45,4 @@ install(TARGETS ${LISTENER_CPP}
 # Install the launch files
 install(DIRECTORY launch/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
-roslint_cpp(${LISTENER_CPP_SRC_FILES})
+# roslint_cpp(${LISTENER_CPP_SRC_FILES})
