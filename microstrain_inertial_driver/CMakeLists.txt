@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(microstrain_inertial_driver)
 
+
 # Locate the common code and messages
 set(COMMON_NAME "microstrain_inertial_driver_common")
 set(COMMON_DIR "${${PROJECT_NAME}_SOURCE_DIR}/${COMMON_NAME}")
@@ -25,8 +26,8 @@ if(NOT EXISTS "${COMMON_SRC_DIR}")
 endif()
 
 # Download and install MSCL
-include(${COMMON_DIR}/cmake/download_mscl.cmake)
-download_mscl(VERSION "64.2.2")
+add_subdirectory(microstrain_inertial_driver_common/MSCL)
+include_directories(microstrain_inertial_driver_common/MSCL/MSCL/source)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -138,12 +139,12 @@ else()
   message(FATAL_ERROR "ROS_VERSION environment variable is not set.")
 endif()
 
-# Allow the MSCL include directory to be accessed
-include_directories(${MSCL_INC_PATH} ${BOOST_INC_PATH})
+include_directories(microstrain_inertial_common/MSCL/MSCL/source)
+
 
 # Linking
 target_link_libraries(${PROJECT_NAME}
-  ${MSCL_LIB_PATH}
+  MSCL_Shared
   ${catkin_LIBRARIES}
 )
 target_link_libraries(${PROJECT_NAME}_node
@@ -168,12 +169,6 @@ install(DIRECTORY launch config
 
 install(DIRECTORY ${COMMON_DIR}/config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${COMMON_NAME}
-)
-
-# We also have to install MSCL and it's dependencies so it can be found at runtime
-file(GLOB BOOST_LIBS "${MSCL_DIR}/Boost/lib/*")
-install(FILES ${BOOST_LIBS} ${MSCL_DIR}/libmscl.so
-  DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
 
 #############
