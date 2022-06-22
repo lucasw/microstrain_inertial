@@ -177,6 +177,28 @@ install(DIRECTORY ${COMMON_DIR}/config
 
 # build/c++11 and whitespace/braces only trip on the buildfarm which is melodic, maybe it's not needed in noetic?
 set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens,-build/c++17,-whitespace/braces")
-roslint_cpp()
+# There are too many files in MSCL for roslint to get in one combined pass:
+# make[3]: /bin/sh: Argument list too long
+roslint_cpp(
+  microstrain_inertial_driver_common/src/microstrain_config.cpp
+  microstrain_inertial_driver_common/src/microstrain_parser.cpp
+  microstrain_inertial_driver_common/src/microstrain_subscribers.cpp
+  microstrain_inertial_driver_common/src/microstrain_services.cpp
+  microstrain_inertial_driver_common/src/microstrain_node_base.cpp
+  microstrain_inertial_driver_common/src/microstrain_publishers.cpp
+  src/microstrain_diagnostic_updater.cpp
+  src/microstrain_inertial_driver.cpp
+  src/microstrain_inertial_driver_node.cpp
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_config.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_ros_funcs.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_publishers.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_node_base.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_parser.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_defs.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_subscribers.h
+  microstrain_inertial_driver_common/include/microstrain_inertial_driver_common/microstrain_services.h
+  include/microstrain_inertial_driver/microstrain_diagnostic_updater.h
+  include/microstrain_inertial_driver/microstrain_inertial_driver.h
+)
 
 roslint_add_test()
