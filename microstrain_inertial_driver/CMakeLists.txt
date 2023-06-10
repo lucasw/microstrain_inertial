@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(microstrain_inertial_driver)
 
-# C++ 14 required
-set(CMAKE_CXX_STANDARD 14)
+# C++ 17 required
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Force some options for this module and the MIP SDK
