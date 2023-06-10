@@ -245,7 +245,7 @@ set(BUILD_TESTING OFF CACHE BOOL "${BUILD_TESTING_TEMP}" FORCE)
 #############
 
 # build/c++11 and whitespace/braces only trip on the buildfarm which is melodic, maybe it's not needed in noetic?
-set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens,-build/c++14,-whitespace/braces")
+set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-readability/fn_size,-whitespace/parens,-build/c++11,-whitespace/braces")
 get_target_property(ROSLINT_SOURCES ${PROJECT_NAME} SOURCES)
 roslint_cpp(${ROSLINT_SOURCES})
 
