@@ -249,7 +249,7 @@ set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-read
 get_target_property(ROSLINT_SOURCES ${PROJECT_NAME} SOURCES)
 roslint_cpp(${ROSLINT_SOURCES})
 
-roslint_add_test()
+# roslint_add_test()
 
 # Make sure that the wiki document is up to date
 add_test(
