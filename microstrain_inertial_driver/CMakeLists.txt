@@ -260,6 +260,7 @@ set(ROSLINT_CPP_OPTS "--filter=-whitespace/line_length,-runtime/references,-read
 get_target_property(ROSLINT_SOURCES ${PROJECT_NAME} SOURCES)
 roslint_cpp(${ROSLINT_SOURCES})
 
+if (BUILD_TESTING)
 roslint_add_test()
 
 # Make sure that the wiki document is up to date
@@ -277,7 +278,6 @@ add_test(
 )
 
 # Make the ROS tests target run our tests as well
-if (BUILD_TESTING)
   add_custom_target(custom_tests COMMAND ${CMAKE_CTEST_COMMAND})
   add_dependencies(run_tests custom_tests)
 endif()
